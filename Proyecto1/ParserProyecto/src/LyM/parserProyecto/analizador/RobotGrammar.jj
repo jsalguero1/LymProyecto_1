@@ -1,0 +1,63 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
+ */options{  static = true;
+  ignore_case = true;
+  lookahead = 3;
+  }PARSER_BEGIN(RobotGrammar)package LyM.parserProyecto.analizador;
+
+public class RobotGrammar{  public static void main(String args []) throws ParseException  {    RobotGrammar parser = new RobotGrammar(System.in);
+    System.out.println("BIENVENIDO AL ROBOTS PARSER");
+    System.out.println("=====================================");
+    parser.principal();
+    System.out.println("ha compilado correctamente");  }}PARSER_END(RobotGrammar)SKIP :{  " "| "\r"| "\t"| "\n"}
+
+TOKEN:
+{
+  < COLON: ":" >
+| < SEMICOLON: ";">
+| < COMA: ",">
+}
+
+TOKEN:
+{
+  < ROBOT_R: "ROBOT_R">
+| < VARS: "VARS">
+| < PROCS: "PROCS">
+}
+
+TOKEN:
+{
+  < ASSIGNTO: "assignto">
+}
+
+TOKEN:
+{
+  < NUMERO: (["0"-"9"])+>
+| < CADENA: (["a"-"z"])+>
+
+}
+
+void principal(): { }
+{
+  < ROBOT_R>stateVars()stateProcs()
+}
+
+void stateVars(): { }
+{
+  < VARS> (stateVariable()< COMA>)* stateVariable()< SEMICOLON>
+}
+
+void stateVariable(): { }
+{
+  (<CADENA >)(< NUMERO>)?
+}
+
+void stateProcs(): { }
+{
+  < PROCS>
+}
+
+
+
+
+
